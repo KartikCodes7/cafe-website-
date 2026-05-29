@@ -201,21 +201,21 @@ const BowlingHero = () => {
     animateParticles();
   };
 
-  // Launch roll action (Curved Loop strike from top-right logo ball)
+  // Launch roll action (Curved Loop strike from leftmost logo ball)
   const launchBall = async () => {
     if (isRolling || isStriking) return;
     setIsRolling(true);
     playRollSound();
 
-    // Mathematically perfect loop sequence:
-    // 1. Starts above BOWLING (x=0, y=0, scale=1)
-    // 2. Loops left and down to foreground (x=-145, y=100, scale=1.4)
-    // 3. Rolls center foreground (x=-18, y=196, scale=1.8)
-    // 4. Glides straight up the lane in 3D perspective to strike the pins (x=-108, y=114, scale=0.7)
+    // Re-calculated coordinates for the 2-ball setup:
+    // 1. Starts above BOWLING at Ball 1 (cx=282, cy=24, r=16) -> (x=0, y=0, scale=1)
+    // 2. Loops left and down to foreground (x=-180, y=60, scale=1.4)
+    // 3. Rolls center foreground (x=-32, y=196, scale=1.8)
+    // 4. Glides straight up the lane in 3D perspective to strike the pins (x=-122, y=114, scale=0.75)
     await ballControls.start({
-      x: [0, -145, -18, -108],
-      y: [0, 95, 196, 114],
-      scale: [1.0, 1.4, 1.8, 0.7],
+      x: [0, -180, -32, -122],
+      y: [0, 60, 196, 114],
+      scale: [1.0, 1.4, 1.8, 0.75],
       rotate: [0, -360, -720, 360],
       transition: { 
         duration: 1.35, 
@@ -259,19 +259,46 @@ const BowlingHero = () => {
     }, 3800);
   };
 
-  // Capture swipe up anywhere on the banner
-  const handleSwipeEnd = (_event: any, info: any) => {
-    if (info.velocity.y < -150 || info.offset.y < -30) {
-      launchBall();
-    }
-  };
+  // Capture swipe up anywhere on the menu page (via global window events)
+  useEffect(() => {
+    let startY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const endY = e.changedTouches[0].clientY;
+      const diffY = startY - endY; // positive means swiped upwards
+      
+      // If user swipes up by more than 70px on mobile
+      if (diffY > 70 && !isRolling && !isStriking) {
+        launchBall();
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      // If user scrolls down on desktop (which brings lower content up, i.e. swiping up)
+      if (e.deltaY > 50 && !isRolling && !isStriking) {
+        launchBall();
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isRolling, isStriking]);
 
   return (
     <motion.section 
       animate={heroControls}
       className="relative mt-8 mb-10 rounded-3xl overflow-hidden border border-white/5 shadow-[0_12px_40px_rgba(0,0,0,0.55)] h-56 sm:h-64 flex flex-col justify-end p-6 select-none bg-black"
-      style={{ touchAction: 'none' }} // Prevent scrolling while dragging
-      onClick={initAudio}
     >
       {/* 3D Wood Grain Lane Gradient and Lanes Lines */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-neutral-900 via-neutral-950 to-black overflow-hidden pointer-events-none">
@@ -340,47 +367,41 @@ const BowlingHero = () => {
           {/* Logo script "The" */}
           <text x="125" y="42" fontFamily="'Playball', cursive" fontSize="30" fill="url(#goldText)" filter="url(#goldBevel)">The</text>
 
-          {/* THREE decorative gold balls above BOWLING with speed lines */}
+          {/* TWO decorative gold balls above BOWLING with speed lines (original logo style) */}
           <g filter="url(#goldBevel)">
-            {/* Ball 3 (smallest, rightmost) */}
-            <circle cx="332" cy="38" r="9" fill="url(#goldText)" />
-            <circle cx="329" cy="35" r="0.8" fill="#000" />
-            <circle cx="332" cy="35" r="0.8" fill="#000" />
-            <circle cx="330" cy="39" r="0.8" fill="#000" />
-            <path d="M322,42 C302,40 316,32 298,38" fill="none" stroke="url(#goldText)" strokeWidth="0.8" opacity="0.65" />
+            {/* Ball 2 (medium, rightmost) */}
+            <circle cx="338" cy="40" r="12" fill="url(#goldText)" />
+            <circle cx="334" cy="36" r="1" fill="#000" />
+            <circle cx="338" cy="36" r="1" fill="#000" />
+            <circle cx="336" cy="41" r="1" fill="#000" />
+            <path d="M322,46 C302,44 316,36 298,42" fill="none" stroke="url(#goldText)" strokeWidth="0.8" opacity="0.65" />
 
-            {/* Ball 2 (medium, middle) */}
-            <circle cx="302" cy="32" r="11" fill="url(#goldText)" />
-            <circle cx="298" cy="28" r="1" fill="#000" />
-            <circle cx="302" cy="28" r="1" fill="#000" />
-            <circle cx="300" cy="33" r="1" fill="#000" />
-            <path d="M290,36 C270,34 284,26 266,32" fill="none" stroke="url(#goldText)" strokeWidth="0.9" opacity="0.75" />
-
-            {/* Ball 1 (leftmost, largest) - Hides when rolling (replaced by motion.g) */}
+            {/* Ball 1 (largest, leftmost) - Hides when rolling (replaced by motion.g) */}
             {!isRolling && (
               <g>
-                <circle cx="268" cy="24" r="14" fill="url(#goldText)" />
-                <circle cx="264" cy="20" r="1.3" fill="#000" />
-                <circle cx="269" cy="20" r="1.3" fill="#000" />
-                <circle cx="266" cy="25" r="1.3" fill="#000" />
+                <circle cx="282" cy="24" r="16" fill="url(#goldText)" />
+                <circle cx="277" cy="18" r="1.3" fill="#000" />
+                <circle cx="282" cy="18" r="1.3" fill="#000" />
+                <circle cx="279" cy="25" r="1.3" fill="#000" />
               </g>
             )}
-            <path d="M250,28 C226,24 242,14 220,22" fill="none" stroke="url(#goldText)" strokeWidth="1.0" opacity="0.85" />
+            <path d="M260,32 C230,28 250,15 220,25" fill="none" stroke="url(#goldText)" strokeWidth="0.85" opacity="0.75" />
+            <path d="M260,28 C238,20 252,10 226,18" fill="none" stroke="url(#goldText)" strokeWidth="0.85" opacity="0.6" />
           </g>
 
           {/* Draggable/Rollable ball element animated inside the vector layout */}
           {isRolling && (
             <motion.g
               animate={ballControls}
-              transform="translate(268, 24)"
+              transform="translate(282, 24)"
               filter="url(#goldBevel)"
             >
               {/* Ball sphere */}
-              <circle cx="0" cy="0" r="14" fill="url(#goldText)" />
+              <circle cx="0" cy="0" r="16" fill="url(#goldText)" />
               {/* Finger holes */}
-              <circle cx="-4" cy="-4" r="1.3" fill="#000" />
-              <circle cx="1" cy="-4" r="1.3" fill="#000" />
-              <circle cx="-2" cy="1" r="1.3" fill="#000" />
+              <circle cx="-5" cy="-6" r="1.3" fill="#000" />
+              <circle cx="0" cy="-6" r="1.3" fill="#000" />
+              <circle cx="-3" cy="-1" r="1.3" fill="#000" />
             </motion.g>
           )}
 
@@ -413,6 +434,7 @@ const BowlingHero = () => {
           </text>
 
           {/* DYNAMIC SHIFTED BOWLING PINS: Shifted downwards at y=138 to free "BO" in "BOWLING" */}
+          {/* NO SIZE REDUCTION ON IMPACT: scale stays at 1.0 */}
           <g filter="url(#goldBevel)">
             
             {/* Animated Left Pin (starts at x=146, y=138) */}
@@ -422,10 +444,10 @@ const BowlingHero = () => {
                 x: -160,
                 y: -40,
                 rotate: -270,
-                scale: 0.1,
+                scale: 1.0, // Retain full scale size
                 opacity: 0,
                 transition: { duration: 0.65, ease: [0.175, 0.885, 0.32, 1.1] }
-              } : { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }}
+              } : { x: 0, y: 0, rotate: 0, scale: 1.0, opacity: 1.0 }}
               className="origin-bottom"
             >
               {/* Shape of bowling pin */}
@@ -442,10 +464,10 @@ const BowlingHero = () => {
                 y: -110,
                 x: -10,
                 rotate: 360,
-                scale: 0.1,
+                scale: 1.0, // Retain full scale size
                 opacity: 0,
                 transition: { duration: 0.6, ease: [0.175, 0.885, 0.32, 1.1] }
-              } : { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }}
+              } : { x: 0, y: 0, rotate: 0, scale: 1.0, opacity: 1.0 }}
               className="origin-bottom"
             >
               <path d="M0,-37 C1.5,-37 2,-35 1.5,-32 C1.5,-31 2.5,-29 3,-27 C3.5,-24 3.5,-21 3,-19 C2.5,-18 1.5,-18 0,-18 C-1.5,-18 -2.5,-18 -3,-19 C-3.5,-21 -3.5,-24 -3,-27 C-2.5,-29 -1.5,-31 -1.5,-32 C-2,-35 -1.5,-37 0,-37 Z" fill="url(#goldText)" />
@@ -460,10 +482,10 @@ const BowlingHero = () => {
                 x: 160,
                 y: -40,
                 rotate: 270,
-                scale: 0.1,
+                scale: 1.0, // Retain full scale size
                 opacity: 0,
                 transition: { duration: 0.65, ease: [0.175, 0.885, 0.32, 1.1] }
-              } : { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }}
+              } : { x: 0, y: 0, rotate: 0, scale: 1.0, opacity: 1.0 }}
               className="origin-bottom"
             >
               <path d="M0,-37 C1.5,-37 2,-35 1.5,-32 C1.5,-31 2.5,-29 3,-27 C3.5,-24 3.5,-21 3,-19 C2.5,-18 1.5,-18 0,-18 C-1.5,-18 -2.5,-18 -3,-19 C-3.5,-21 -3.5,-24 -3,-27 C-2.5,-29 -1.5,-31 -1.5,-32 C-2,-35 -1.5,-37 0,-37 Z" fill="url(#goldText)" />
@@ -489,7 +511,7 @@ const BowlingHero = () => {
               STRIKE!
             </h2>
             <span className="text-[10px] font-mono tracking-[0.4em] text-white/70 uppercase mt-2">
-              Epic Curved Release 🎳
+              Menu-wide Release 🎳
             </span>
           </motion.div>
         )}
@@ -503,7 +525,7 @@ const BowlingHero = () => {
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
             className="text-[9px] font-mono tracking-[0.25em] text-brand-neonBlue/60 uppercase font-black"
           >
-            Swipe Up Anywhere to Strike!
+            Swipe Up Anywhere on Page to Strike!
           </motion.span>
           <motion.div 
             animate={{ opacity: [0.3, 0.9, 0.3], y: [0, -3, 0] }}
@@ -514,15 +536,6 @@ const BowlingHero = () => {
           </motion.div>
         </div>
       )}
-
-      {/* GESTURE DETECTOR OVERLAY: Swiping upwards ANYWHERE inside the banner triggers the roll */}
-      <motion.div
-        drag="y"
-        dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.15}
-        onDragEnd={handleSwipeEnd}
-        className="absolute inset-0 z-30 cursor-grab active:cursor-grabbing"
-      />
 
     </motion.section>
   );
