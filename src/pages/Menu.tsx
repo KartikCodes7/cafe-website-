@@ -141,6 +141,31 @@ const Menu = () => {
       {/* Extremely subtle, centered warm amber/gold aura in the backdrop */}
       <div className="absolute top-[20%] left-[20%] right-[20%] bottom-[20%] bg-brand-neonPurple/2 rounded-full blur-[160px] pointer-events-none z-0" />
 
+      {/* Light Background Watermarks (Subtle Grayscaled Pizza & Burger) */}
+      <motion.div 
+        animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
+        className="fixed top-[20%] -left-16 md:-left-24 lg:-left-28 w-48 md:w-60 lg:w-72 h-48 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.025] select-none mix-blend-screen"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" 
+          alt="Pizza watermark" 
+          className="w-full h-full object-contain filter grayscale brightness-125"
+        />
+      </motion.div>
+
+      <motion.div 
+        animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
+        className="fixed bottom-[15%] -right-16 md:-right-24 lg:-right-28 w-48 md:w-60 lg:w-72 h-48 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.025] select-none mix-blend-screen"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" 
+          alt="Burger watermark" 
+          className="w-full h-full object-contain filter grayscale brightness-125"
+        />
+      </motion.div>
+
       {/* Clean Glassmorphic Sticky Header */}
       <header className="sticky top-0 z-40 glass-light border-b border-white/5 pt-10 pb-4 px-6 shadow-[0_1px_15px_rgba(0,0,0,0.2)]">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
