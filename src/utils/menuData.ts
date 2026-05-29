@@ -70,7 +70,7 @@ export const menuData: MenuItem[] = [
   // ═══════════════════════════════════════════════
   // ☕🧋🍹 BEVERAGES
   // ═══════════════════════════════════════════════
-  { id: "v1", name: "Nitro Cold Brew", description: "Smooth, nitrogen-infused cold brew coffee.", price: 6, category: "Beverages", image: "https://images.unsplash.com/photo-1461023058943-0708e5bc4cea?w=500&q=80" },
+  { id: "v1", name: "Nitro Cold Brew", description: "Smooth, nitrogen-infused cold brew coffee.", price: 6, category: "Beverages", image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=500&q=80" },
   { id: "v2", name: "Blue Lagoon Mocktail", description: "Refreshing blue curaçao syrup, lemon, and crushed ice.", price: 8, category: "Beverages", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&q=80" },
   { id: "v3", name: "Signature Cappuccino", description: "Artisanal espresso with velvety steamed milk foam.", price: 5, category: "Beverages", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500&q=80" },
   { id: "v4", name: "Caramel Latte", description: "Rich espresso, steamed milk, and buttery caramel drizzle.", price: 6, category: "Beverages", image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=500&q=80" },
