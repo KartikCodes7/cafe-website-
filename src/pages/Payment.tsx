@@ -7,7 +7,7 @@ import type { PaymentMethod } from '../store/useAppStore';
 
 const Payment = () => {
   const navigate = useNavigate();
-  const { cart, cartTotal, currentTable, clearCart, addOrder, customerInfo } = useAppStore();
+  const { cart, cartTotal, currentTable, clearCart, addOrder, customerInfo, setCurrentSessionOrderId } = useAppStore();
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -36,6 +36,7 @@ const Payment = () => {
         specialInstructions: customerInfo?.instructions || '',
       };
       addOrder(newOrder);
+      setCurrentSessionOrderId(newOrder.id); // Save order ID of the active session
       clearCart();
       navigate('/track', { state: { orderId: newOrder.id } });
     }, selectedMethod === 'UPI' ? 2200 : 800);

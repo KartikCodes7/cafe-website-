@@ -8,10 +8,10 @@ import type { OrderStatus } from '../store/useAppStore';
 const Track = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { orders } = useAppStore();
+  const { orders, currentSessionOrderId } = useAppStore();
   
   // Derived state to remain reactive to store updates
-  const orderId = location.state?.orderId || (orders.length > 0 ? orders[0].id : null);
+  const orderId = location.state?.orderId || currentSessionOrderId;
   const order = orders.find(o => o.id === orderId);
 
   const [prepProgress, setPrepProgress] = useState(0);

@@ -56,6 +56,10 @@ interface AppState {
   managerName: string | null;
   authenticateManager: (name: string | null) => void;
   logoutManager: () => void;
+
+  // Active Session Order Tracking
+  currentSessionOrderId: string | null;
+  setCurrentSessionOrderId: (id: string | null) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -155,4 +159,8 @@ export const useAppStore = create<AppState>((set, get) => ({
     sessionStorage.removeItem('bt_manager_name');
     set({ isManagerAuthenticated: false, managerName: null });
   },
+
+  // Initialize session order as null for fresh page loads
+  currentSessionOrderId: null,
+  setCurrentSessionOrderId: (id) => set({ currentSessionOrderId: id }),
 }));

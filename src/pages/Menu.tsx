@@ -86,10 +86,10 @@ const AmbientParticles = () => {
 const Menu = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { currentTable, setTable, cart, addToCart, cartTotal, orders } = useAppStore();
+  const { currentTable, setTable, cart, addToCart, cartTotal, orders, currentSessionOrderId } = useAppStore();
   
-  // Find any active order for live banner telemetry
-  const activeOrder = orders.find(o => o.status !== 'Served');
+  // Find active order placed in the current session only
+  const activeOrder = orders.find(o => o.id === currentSessionOrderId && o.status !== 'Served');
   const [activeCategory, setActiveCategory] = useState(menuCategories[0]);
   const [isAiOpen, setIsAiOpen] = useState(false);
   const [recentlyAddedItem, setRecentlyAddedItem] = useState<MenuItem | null>(null);
