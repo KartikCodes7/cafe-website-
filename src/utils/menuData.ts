@@ -55,7 +55,7 @@ export const menuData: MenuItem[] = [
   { id: "pa3", name: "Fiery Arrabiata Pasta", description: "Spicy tomato sauce, chili flakes, olives, and spaghetti.", price: 12, category: "Pasta", image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=500&q=80" },
   { id: "pa4", name: "Truffle Mushroom Pasta", description: "Wild mushrooms, truffle oil, cream, and toasted pine nuts.", price: 16, category: "Pasta", image: "https://images.unsplash.com/photo-1556761223-4c4282c73f77?w=500&q=80" },
   { id: "pa5", name: "Smoky Chicken Penne", description: "Smoked chicken, roasted peppers, and smoky paprika cream.", price: 15, category: "Pasta", image: "https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb?w=500&q=80" },
-  { id: "pa6", name: "Cheesy Jalapeño Pasta", description: "Spicy jalapeño-cheddar sauce with fusilli and crispy breadcrumbs.", price: 13, category: "Pasta", image: "https://images.unsplash.com/photo-1587840171670-8b850147754e?w=500&q=80" },
+  { id: "pa6", name: "Cheesy Jalapeño Pasta", description: "Spicy jalapeño-cheddar sauce with fusilli and crispy breadcrumbs.", price: 13, category: "Pasta", image: "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=500&q=80" },
 
   // ═══════════════════════════════════════════════
   // 🌯 WRAPS & SANDWICHES
