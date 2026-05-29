@@ -151,13 +151,22 @@ const Menu = () => {
               </div>
             </div>
             <div className="flex flex-col gap-0.5">
-              <span className="text-[11px] font-display font-extrabold tracking-wider text-white uppercase flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-neonBlue animate-pulse" />
-                Serving {currentTable || 'Table 4'} 🎳
-              </span>
+              <motion.div 
+                animate={{ y: [0, -1.5, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="flex items-center gap-2"
+              >
+                <span className="text-xs font-black tracking-[0.1em] text-white font-display uppercase">
+                  The Bowling Town
+                </span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-brand-neonBlue/10 text-brand-neonBlue font-mono font-black uppercase tracking-wider scale-95 shrink-0 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-neonBlue animate-pulse" />
+                  {currentTable || 'Table 4'}
+                </span>
+              </motion.div>
               {/* Estimated Prep Time Indicator */}
-              <span className="text-[9px] font-mono font-medium text-brand-neonBlue flex items-center gap-1">
-                <Clock className="w-2.5 h-2.5" />
+              <span className="text-[9px] font-mono font-medium text-gray-500 flex items-center gap-1">
+                <Clock className="w-2.5 h-2.5 text-brand-neonBlue" />
                 Est. Prep: 12 Mins
               </span>
             </div>
