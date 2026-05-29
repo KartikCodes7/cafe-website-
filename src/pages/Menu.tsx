@@ -144,19 +144,19 @@ const Menu = () => {
       {/* Clean Glassmorphic Sticky Header */}
       <header className="sticky top-0 z-40 glass-light border-b border-white/5 pt-10 pb-4 px-6 shadow-[0_1px_15px_rgba(0,0,0,0.2)]">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-neonPurple to-brand-neonBlue p-[1px] flex items-center justify-center shadow-lg">
-              <div className="w-full h-full bg-warm-bg rounded-[7px] flex items-center justify-center text-[10px] font-black text-white tracking-tighter">
+          <div className="flex items-center gap-4">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-neonPurple to-brand-neonBlue p-[1px] flex items-center justify-center shadow-lg shrink-0">
+              <div className="w-full h-full bg-warm-bg rounded-[7px] flex items-center justify-center text-[11px] font-black text-white tracking-tighter">
                 BT
               </div>
             </div>
-            <div className="flex flex-col gap-0.5">
+            <div className="flex flex-col gap-1">
               <motion.div 
-                animate={{ y: [0, -1.5, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="flex items-center gap-2"
+                animate={{ y: [0, -3.5, 0] }}
+                transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
+                className="flex items-center gap-2.5"
               >
-                <span className="text-xs font-black tracking-[0.1em] text-white font-display uppercase">
+                <span className="text-sm font-black tracking-[0.08em] text-white font-display uppercase sm:text-base">
                   The Bowling Town
                 </span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded bg-brand-neonBlue/10 text-brand-neonBlue font-mono font-black uppercase tracking-wider scale-95 shrink-0 flex items-center gap-1">
@@ -165,7 +165,7 @@ const Menu = () => {
                 </span>
               </motion.div>
               {/* Estimated Prep Time Indicator */}
-              <span className="text-[9px] font-mono font-medium text-gray-500 flex items-center gap-1">
+              <span className="text-[9px] font-mono font-medium text-gray-500 flex items-center gap-1.5">
                 <Clock className="w-2.5 h-2.5 text-brand-neonBlue" />
                 Est. Prep: 12 Mins
               </span>
