@@ -141,11 +141,12 @@ const Menu = () => {
       {/* Extremely subtle, centered warm amber/gold aura in the backdrop */}
       <div className="absolute top-[20%] left-[20%] right-[20%] bottom-[20%] bg-brand-neonPurple/2 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Light Background Watermarks (Subtle Grayscaled Pizza & Burger) */}
+      {/* Light Background Watermarks (Subtle Grayscaled Pizza, Steaming Coffee & Burger) */}
+      {/* 1. Gourmet Pizza Watermark (Left Side) */}
       <motion.div 
         animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
         transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
-        className="fixed top-[20%] -left-16 md:-left-24 lg:-left-28 w-48 md:w-60 lg:w-72 h-48 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.08] select-none mix-blend-screen"
+        className="fixed top-[20%] left-[-40px] md:left-[-20px] lg:left-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
       >
         <img 
           src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" 
@@ -154,10 +155,24 @@ const Menu = () => {
         />
       </motion.div>
 
+      {/* 2. Steaming Coffee Cup Watermark (Center-Left) */}
+      <motion.div 
+        animate={{ y: [0, -12, 0], rotate: [0, -4, 0] }}
+        transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }}
+        className="fixed top-[50%] left-[5%] lg:left-[12%] w-44 md:w-60 lg:w-72 h-44 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" 
+          alt="Coffee watermark" 
+          className="w-full h-full object-contain filter grayscale brightness-150"
+        />
+      </motion.div>
+
+      {/* 3. Gourmet Burger Watermark (Right Side) */}
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
         transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
-        className="fixed bottom-[15%] -right-16 md:-right-24 lg:-right-28 w-48 md:w-60 lg:w-72 h-48 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.08] select-none mix-blend-screen"
+        className="fixed bottom-[15%] right-[-40px] md:right-[-20px] lg:right-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
       >
         <img 
           src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" 
