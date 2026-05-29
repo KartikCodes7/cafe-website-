@@ -7,6 +7,8 @@ import { menuData, menuCategories } from '../utils/menuData';
 import type { MenuItem } from '../utils/menuData';
 import AIConcierge from '../components/AIConcierge';
 import SmartRecommendationPanel from '../components/SmartRecommendationPanel';
+import BowlingHero from '../components/BowlingHero';
+
 
 // Highly Refined Slow Ambient Floating Particles (Warm Gold/Amber Embers Only)
 const AmbientParticles = () => {
@@ -290,25 +292,9 @@ const Menu = () => {
           </motion.div>
         )}
 
-        {/* Cinematic Hero Section - Deep Vignette, No Diagonal Reflection */}
-        <section className="relative mt-8 mb-10 rounded-3xl overflow-hidden border border-white/5 shadow-[0_12px_40px_rgba(0,0,0,0.4)] h-44 sm:h-52 flex flex-col justify-end p-6 sm:p-8 group">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1538510121173-1f8a85c2ec8f?w=1000&q=80')] bg-cover bg-center opacity-30 transition-transform duration-[1200ms] ease-out group-hover:scale-103" />
-          
-          {/* Deep dark gradient overlay for crystal clear text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/65 to-black/35" />
+        {/* Interactive Bowling Strike Hero Animation Banner */}
+        <BowlingHero />
 
-          <div className="relative z-10">
-            <span className="text-[10px] font-mono tracking-[0.3em] text-brand-neonBlue uppercase font-extrabold mb-1 block">
-              Luxury Entertainment & Café
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wider uppercase font-display">
-              {currentTable || 'Table 4'} Experience
-            </h1>
-            <p className="text-xs text-gray-300 mt-1.5 max-w-md font-light leading-relaxed">
-              Order artisan pizzas, loaded snacks, and premium mocktails directly to your table.
-            </p>
-          </div>
-        </section>
 
         {/* Category switcher - Clean Matte Gold Pills */}
         <div className="sticky top-[89px] z-30 bg-warm-bg/75 backdrop-blur-md py-4 -mx-6 px-6 border-b border-white/5 overflow-x-auto hide-scrollbar flex gap-2.5">
