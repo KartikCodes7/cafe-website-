@@ -146,39 +146,63 @@ const Menu = () => {
       <motion.div 
         animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
         transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
-        className="fixed top-[20%] left-[-40px] md:left-[-20px] lg:left-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
+        className="fixed top-[20%] left-[-40px] md:left-[-20px] lg:left-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 select-none"
       >
-        <img 
-          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" 
-          alt="Pizza watermark" 
-          className="w-full h-full object-contain filter grayscale brightness-150"
-        />
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full stroke-brand-neonBlue opacity-[0.08] drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+          {/* Pizza crust triangle */}
+          <path d="M50 15 C55 12, 70 10, 80 15 L50 85 L20 15 C30 10, 45 12, 50 15 Z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Pizza crust detail */}
+          <path d="M22 17 C32 12, 45 14, 50 17 C55 14, 68 12, 78 17" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+          {/* Pepperonis (circles) */}
+          <circle cx="50" cy="35" r="5" stroke="currentColor" strokeWidth="0.8"/>
+          <circle cx="38" cy="45" r="4.5" stroke="currentColor" strokeWidth="0.8"/>
+          <circle cx="62" cy="45" r="4" stroke="currentColor" strokeWidth="0.8"/>
+          <circle cx="50" cy="60" r="5" stroke="currentColor" strokeWidth="0.8"/>
+          {/* Cheese melt details / lines */}
+          <path d="M30 30 L40 32 M70 30 L60 32 M45 48 L55 50" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round"/>
+        </svg>
       </motion.div>
 
       {/* 2. Steaming Coffee Cup Watermark (Center-Left) */}
       <motion.div 
         animate={{ y: [0, -12, 0], rotate: [0, -4, 0] }}
         transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }}
-        className="fixed top-[50%] left-[5%] lg:left-[12%] w-44 md:w-60 lg:w-72 h-44 md:h-60 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
+        className="fixed top-[50%] left-[5%] lg:left-[12%] w-44 md:w-60 lg:w-72 h-44 md:h-60 lg:h-72 pointer-events-none z-0 select-none"
       >
-        <img 
-          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" 
-          alt="Coffee watermark" 
-          className="w-full h-full object-contain filter grayscale brightness-150"
-        />
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full stroke-brand-neonBlue opacity-[0.08] drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+          {/* Cup body */}
+          <path d="M25 40 L75 40 C75 62, 65 72, 50 72 C35 72, 25 62, 25 40 Z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Handle */}
+          <path d="M75 48 C83 48, 85 58, 75 62" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Saucer */}
+          <path d="M15 78 C25 84, 75 84, 85 78 L80 76 L20 76 Z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Steam waves rising */}
+          <path d="M42 32 C40 26, 46 22, 44 16" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+          <path d="M50 34 C48 28, 54 24, 52 18" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+          <path d="M58 32 C56 26, 62 22, 60 16" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+        </svg>
       </motion.div>
 
       {/* 3. Gourmet Burger Watermark (Right Side) */}
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
         transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
-        className="fixed bottom-[15%] right-[-40px] md:right-[-20px] lg:right-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 opacity-[0.12] select-none mix-blend-screen"
+        className="fixed bottom-[15%] right-[-40px] md:right-[-20px] lg:right-[2%] w-40 md:w-56 lg:w-72 h-40 md:h-56 lg:h-72 pointer-events-none z-0 select-none"
       >
-        <img 
-          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" 
-          alt="Burger watermark" 
-          className="w-full h-full object-contain filter grayscale brightness-150"
-        />
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full stroke-brand-neonBlue opacity-[0.08] drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+          {/* Top Bun */}
+          <path d="M20 40 C20 20, 80 20, 80 40 C75 42, 25 42, 20 40 Z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Sesame Seeds */}
+          <path d="M40 28 Q41 29, 42 28 M60 28 Q61 29, 62 28 M50 24 Q51 25, 52 24 M35 34 Q36 35, 37 34 M65 34 Q66 35, 67 34" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+          {/* Cheese dripping */}
+          <path d="M18 46 L82 46 L78 52 L70 46 L60 55 L52 46 L30 55 L24 46 Z" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Meat Patty */}
+          <rect x="18" y="56" width="64" height="8" rx="4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Lettuce/Tomato layer */}
+          <path d="M22 46 C25 43, 28 49, 32 46 C35 43, 38 49, 42 46 C45 43, 48 49, 52 46 C55 43, 58 49, 62 46 C65 43, 68 49, 72 46 C75 43, 78 49, 82 46" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round"/>
+          {/* Bottom Bun */}
+          <path d="M22 69 C25 74, 75 74, 78 69 L78 64 L22 64 Z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </motion.div>
 
       {/* Clean Glassmorphic Sticky Header */}
